@@ -4,7 +4,7 @@ const nodeExternals = require("webpack-node-externals");
 const copyFiles = require("copy-webpack-plugin");
 
 module.exports = {
-  entry: "./index.ts",
+  entry: "./src/index.ts",
   target: "node",
   mode: "production",
   externals: [nodeExternals()],
@@ -18,7 +18,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new copyFiles({ patterns: [{ from: "../frontend/build", to: "build" }] }),
+    new copyFiles({ patterns: [{ from: "../client-web/build", to: "build" }] }),
   ],
   output: {
     path: path2.resolve(__dirname, "dist"),

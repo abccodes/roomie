@@ -8,3 +8,4 @@ common/tsconfig.tsbuildinfo
 common/index.js
 common/index.d.ts
 node_modules/
+.env
