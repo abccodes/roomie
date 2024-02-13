@@ -1,37 +1,45 @@
-const { MongoClient, ServerApiVersion } = require("mongodb");
-import * as dotenv from "dotenv";
+//Importing Libraries
+import express from "express";
+require("dotenv").config();
+const cors = require("cors");
+const path = require("path");
 
-dotenv.config();
+//Initalizing the express app
+const app = express();
 
-console.log("CHECK ", process.env.MONGO_URI);
-const uri = process.env.MONGO_URI;
-
-// Create a MongoClient with a MongoClientOptions object to set the Stable API version
-console.log("URI, ", uri);
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  },
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}`);
+  console.log("Press Ctrl+C to quit.");
 });
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log(
-      "Pinged your deployment. You successfully connected to MongoDB!"
-    );
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+//Importing the connectToDB function to the index.js file as it is the main entry to the project
+const connectToDB = require("./config/db_config.js");
 
+//calling the function or running the function
+connectToDB();
+
+//Importing the product routes module
+// const product = require("./src/routes/product.routes");
+//Importing the auth routes module
+const auth = require("./routes/auth.routes.js");
+//Adding Node features
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+app.use(cors());
+
+//using the product route
+// app.use("/api/product", product);
+//using the auth route
+app.use("/api/auth", auth);
+
+//Run Node APP
+module.exports = app;
+
+// const { MongoClient, ServerApiVersion } = require("mongodb");
+// import * as dotenv from "dotenv";
+// const auth = require("./routes/auth.routes.js");
 // import express, {
 //   NextFunction,
 //   Request,
@@ -42,8 +50,10 @@ run().catch(console.dir);
 // import { plainToClass } from "class-transformer";
 // import { RequestBody, ResponseBody } from "common";
 // import { validate } from "class-validator";
-// const { MongoClient, ServerApiVersion } = require('mongodb');
-// const uri = "mongodb+srv://abayercalvert:<password>@rommie.zk2x6xq.mongodb.net/?retryWrites=true&w=majority";
+
+// dotenv.config();
+
+// const uri = process.env.MONGO_URI;
 
 // // Create a MongoClient with a MongoClientOptions object to set the Stable API version
 // const client = new MongoClient(uri, {
@@ -51,17 +61,17 @@ run().catch(console.dir);
 //     version: ServerApiVersion.v1,
 //     strict: true,
 //     deprecationErrors: true,
-//   }
+//   },
 // });
 
-// async function start() {
+// async function run() {
 //   try {
+//     // Connect the client to the server	(optional starting in v4.7)
+//     await client.connect();
 //     const app = express();
 
-//     await client.connect();
-
-//     await client.db("admin").command({ ping: 1 });
-//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+//     //using the auth route
+//     app.use("/api/auth", auth);
 
 //     const path = require("path");
 
@@ -110,7 +120,15 @@ run().catch(console.dir);
 //       console.log(`App listening on port ${PORT}`);
 //       console.log("Press Ctrl+C to quit.");
 //     });
-//   } catch (e) {
-//     console.error(e);
+
+//     // Send a ping to confirm a successful connection
+//     // await client.db("admin").command({ ping: 1 });
+//     // console.log(
+//     //   "Pinged your deployment. You successfully connected to MongoDB!"
+//     // );
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await client.close();
 //   }
 // }
+// run().catch(console.dir);
