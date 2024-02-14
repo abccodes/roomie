@@ -1,41 +1,31 @@
-//Importing Libraries
 import express from "express";
-require("dotenv").config();
-const cors = require("cors");
-const path = require("path");
+import dotenv from "dotenv";
+import cors from "cors";
+import connectToDB from "./config/db_config";
+import authRoutes from "./routes/auth.routes";
 
-//Initalizing the express app
+dotenv.config();
+
 const app = express();
-
-// Start the server
 const PORT = process.env.PORT || 5000;
+
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
   console.log("Press Ctrl+C to quit.");
 });
 
-//Importing the connectToDB function to the index.js file as it is the main entry to the project
-const connectToDB = require("./config/db_config.js");
-
-//calling the function or running the function
+// Initialize database connection
 connectToDB();
 
-//Importing the product routes module
-// const product = require("./src/routes/product.routes");
-//Importing the auth routes module
-const auth = require("./routes/auth.routes.js");
-//Adding Node features
+// Middleware
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 app.use(cors());
 
-//using the product route
-// app.use("/api/product", product);
-//using the auth route
-app.use("/api/auth", auth);
+// Routes
+app.use("/api/auth", authRoutes);
 
-//Run Node APP
-module.exports = app;
+export default app;
 
 // const { MongoClient, ServerApiVersion } = require("mongodb");
 // import * as dotenv from "dotenv";

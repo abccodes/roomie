@@ -5,7 +5,14 @@
     "esModuleInterop": true // If you disable this, you'll get an error:
     // TypeError: (0 , s.default) is not a function
   },
-  "include": ["**/*.ts"],
+  "include": [
+    "**/*.ts",
+    "src/config/db_config.ts",
+    "src/middleware/authvalidation.middleware.ts",
+    "src/routes/auth.routes.ts",
+    "src/utils/validate.ts",
+    "src/models/user.model.ts"
+, "src/controller/auth.controller.ts"  ],
   "exclude": ["node_modules"],
   "target": "es2017",
   "module": "commonjs",
