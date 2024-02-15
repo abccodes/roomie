@@ -1,9 +1,9 @@
-import express, { Request, Response } from "express";
+import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import asyncHandler from "express-async-handler";
 import { v4 as uuidv4 } from "uuid";
-import userModel from "../models/user.model"; // Adjust import path as necessary
+import userModel from "../models/user.model";
 import dotenv from "dotenv";
 
 dotenv.config();

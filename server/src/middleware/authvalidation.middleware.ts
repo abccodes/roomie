@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from "express";
-import validator from "../utils/validate"; // Adjust the import path as necessary
-
-// Assuming validator is a custom function, you might need to adjust its import if it's a default or named export
+import validator from "../utils/validate";
 
 interface ValidationRule {
   [key: string]: string;
