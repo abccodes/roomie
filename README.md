@@ -3,7 +3,8 @@
   <a href="https://github.com/abccodes/roomie">
     <img src="https://files.oaiusercontent.com/file-qmNhj9Ml5Uy9vInWqrf0Deho?se=2024-02-24T21%3A07%3A45Z&sp=r&sv=2021-08-06&sr=b&rscc=max-age%3D31536000%2C%20immutable&rscd=attachment%3B%20filename%3D7d2dbf12-3a2f-4354-bfd7-7a4d8708bc9e.webp&sig=Rp5PIYLi2loGrNtWvPYcHDUhCYsz1uFB2CJt8MB5Re4%3D" alt="Logo" width="80" height="80">
   </a>
-  <div align="center">Roomie</div>
+
+  <h3 align="center">Roomie</h3>
 
   <p align="center">
     Roomie stands as the premier roommate discovery platform specifically tailored for college students. This software's entirety is housed within this open-source repository, ensuring comprehensive access to its underlying code.
@@ -178,4 +179,3 @@ Distributed under the MIT License. See [LICENSE](https://github.com/abccodes/roo
 * []()
 * []()
 * []()
-
