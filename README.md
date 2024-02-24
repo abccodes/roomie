@@ -3,7 +3,7 @@
   <h3 align="center">Roomie</h3>
 
   <p align="center">
-    Roomie stands as the premier roommate discovery platform specifically tailored for college students. This software's entirety is housed within this open-source repository, ensuring comprehensive access to its underlying code.
+    Roomie stands as the premier roommate discovery platform specifically tailored for college students. This software is entirety housed within this open-source repository, ensuring comprehensive access to its underlying code.
     <br/>
     <br/>
     <a href="https://github.com/abccodes/roomie"><strong>Explore the docs »</strong></a>
