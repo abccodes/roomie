@@ -169,9 +169,3 @@ Distributed under the MIT License. See [LICENSE](https://github.com/abccodes/roo
 ## Authors
 
 * **abccodes** - *Computer Science Student* - [abccodes](https://github.com/abccodes/) - *Founder of Roomie*
-
-## Acknowledgements
-
-* []()
-* []()
-* []()
