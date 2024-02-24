@@ -17,7 +17,7 @@
   </p>
 </p>
 
-![Downloads](https://img.shields.io/github/downloads/abccodes/roomie/total) ![Contributors](https://img.shields.io/github/contributors/abccodes/roomie?color=dark-green) ![Stargazers](https://img.shields.io/github/stars/abccodes/roomie?style=social) ![Issues](https://img.shields.io/github/issues/abccodes/roomie) ![License](https://img.shields.io/github/license/abccodes/roomie) 
+![Contributors](https://img.shields.io/github/contributors/abccodes/roomie?color=dark-green) ![Stargazers](https://img.shields.io/github/stars/abccodes/roomie?style=social) ![Issues](https://img.shields.io/github/issues/abccodes/roomie) ![License](https://img.shields.io/github/license/abccodes/roomie) 
 
 ## Table Of Contents
 
