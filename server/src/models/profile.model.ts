@@ -1,11 +1,13 @@
 import { Schema, model, Types } from "mongoose";
+import { QuestionsInterface, Questions } from "./questions.model";
 
 interface UserProfile {
   userId: Types.ObjectId; // Reference to User model
   profileImage: string;
   bio: string;
   location: string;
-  dateOfBirth: Date; // Consider using Date for dateOfBirth
+  dateOfBirth: Date; // Date for DOB
+  questions: QuestionsInterface;
 }
 
 const profileSchema = new Schema<UserProfile>(
@@ -13,7 +15,7 @@ const profileSchema = new Schema<UserProfile>(
     userId: {
       type: Schema.Types.ObjectId, // Reference to User
       required: true,
-      ref: "User", // This is how you link UserProfile to User
+      ref: "User", // link UserProfile to User
     },
     profileImage: {
       type: String,
@@ -24,9 +26,11 @@ const profileSchema = new Schema<UserProfile>(
     location: {
       type: String,
     },
+
     dateOfBirth: {
       type: Date,
     },
+    questions: [Questions],
   },
   { timestamps: true }
 );

@@ -28,6 +28,8 @@ router.post("/login", loginValidation, login);
 // Profile update route with JWT verification
 router.post("/profile/:id", verifyToken, updateOrCreateUserProfile);
 
+// ====================================
+
 // Profile route with JWT verification
 router.get("/profile/:id", verifyToken, userProfile);
 // All users route with JWT verification
