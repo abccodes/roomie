@@ -2,7 +2,7 @@ import { Schema, model, Types } from "mongoose";
 
 interface User {
   _id: Types.ObjectId; // Use _id as the primary key for MongoDB documents
-  userId: string;
+  // userId: string;
   fullName: string;
   email: string;
   password: string;
@@ -11,10 +11,10 @@ interface User {
 
 const userSchema = new Schema<User>(
   {
-    userId: {
-      type: String,
-      required: true,
-    },
+    // userId: {
+    //   type: String,
+    //   required: true,
+    // },
     fullName: {
       type: String,
       required: true,

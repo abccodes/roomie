@@ -33,7 +33,7 @@ const profileSchema = new Schema<UserProfile>(
       required: true,
       ref: "User", // link UserProfile to User
     },
-    school: { 
+    school: {
       type: String,
       required: false,
     },
@@ -101,7 +101,8 @@ const profileSchema = new Schema<UserProfile>(
       type: String,
       required: false,
     },
-  }, { timestamps: true }
+  },
+  { timestamps: true }
 );
 
 // questions: [Questions],

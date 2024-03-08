@@ -42,4 +42,4 @@ const userPreferencesSchema = new Schema<UserPreferences>(
 
 const UserPrefrences = model<UserPreferences>("User", userPreferencesSchema);
 
-export { UserPreferences };
+export { UserPrefrences };

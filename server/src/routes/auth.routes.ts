@@ -11,7 +11,8 @@ import {
 import {
   login,
   register,
-  userProfile,
+  user,
+  profile,
   updateOrCreateUserProfile,
   users,
 } from "../controller/auth.controller";
@@ -30,8 +31,10 @@ router.post("/profile/:id", verifyToken, updateOrCreateUserProfile);
 
 // ====================================
 
-// Profile route with JWT verification
-router.get("/profile/:id", verifyToken, userProfile);
+//user route with JWT verification
+router.get("/user/:id", verifyToken, user);
+//profile route with JWT verification
+router.get("/profile/:id", verifyToken, profile);
 // All users route with JWT verification
 router.get("/users", verifyToken, users);
 
