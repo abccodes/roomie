@@ -130,6 +130,10 @@ const userProfile = asyncHandler(
   }
 );
 
+
+//@dev
+// Update updateOrCreateUserProfile to use the updated profile schema
+
 const updateOrCreateUserProfile = async (
   req: ProfileUpdateRequest,
   res: Response

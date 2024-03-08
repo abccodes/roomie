@@ -9,13 +9,6 @@ interface User {
   phoneNumber: string;
 }
 
-
-
-//what we need for a question:
-// mp3 file
-// question name
-// UI for the question (play button, text, animated playthrough(can skip or go back))
-
 const userSchema = new Schema<User>(
   {
     userId: {
