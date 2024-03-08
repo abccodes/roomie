@@ -3,7 +3,7 @@ import { Schema, model, Types } from "mongoose";
 interface UserPreferences {
   userId: Types.ObjectId; // Reference to User model
   gender: string;
-  housingPrefrence: string; // What is more important: price, location, ect
+  housingPreference: string; // What is more important: price, location, ect
   status: string; // Looking for rooomate to move in, looking for roomates for new home, found roomates
   dorm: boolean; //dorm or off campus
 }
@@ -24,7 +24,7 @@ const userPreferencesSchema = new Schema<UserPreferences>(
       type: String,
       required: true,
     },
-    housingPrefrence: {
+    housingPreference: {
       type: String,
       required: true,
     },
@@ -40,6 +40,9 @@ const userPreferencesSchema = new Schema<UserPreferences>(
   { timestamps: true }
 );
 
-const UserPrefrences = model<UserPreferences>("User", userPreferencesSchema);
+const UserPreferences = model<UserPreferences>(
+  "UserPreferences",
+  userPreferencesSchema
+);
 
-export { UserPrefrences };
+export { UserPreferences };

@@ -1,3 +1,4 @@
+// TO DO -> Make get preferences function and route
 import { Request, Response } from "express";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
@@ -6,11 +7,11 @@ import { Types } from "mongoose";
 import dotenv from "dotenv";
 import { User } from "../models/user.model"; // Correctly import User model
 import { UserProfile } from "../models/profile.model"; // Import the UserProfile model
+import { UserPreferences } from "../models/user.preferences";
 import { v4 as uuidv4 } from "uuid";
 
 dotenv.config();
 
-// Updated interface to reflect actual fields used for registration
 interface RegisterBody {
   fullName: string;
   email: string;
@@ -23,7 +24,6 @@ interface LoginBody {
   password: string;
 }
 
-// Interface for the request body to ensure type safety
 interface ProfileUpdateRequest extends Request {
   params: { id: string };
   body: {
@@ -37,15 +37,24 @@ interface ProfileUpdateRequest extends Request {
     employment?: string;
     major?: string;
     single?: boolean;
-    sleepSchedule?: boolean; // Ensure this is intended to be a boolean
+    sleepSchedule?: boolean;
     hobbies?: string;
     smoking?: boolean;
     drinking?: boolean;
     loveLanguage?: string;
-    temperature?: boolean; // Ensure this is intended to be a boolean
+    temperature?: boolean;
     weekendDescription?: string;
     politicalParty?: string;
-    // Other fields as needed
+  };
+}
+
+interface PreferencesUpdateRequest extends Request {
+  params: { id: string };
+  body: {
+    gender?: string;
+    housingPreference?: string;
+    status?: string;
+    dorm?: boolean;
   };
 }
 
@@ -217,6 +226,49 @@ const updateOrCreateUserProfile = async (
   }
 };
 
+const updateOrCreateUserPreferences = asyncHandler(
+  async (req: PreferencesUpdateRequest, res: Response): Promise<any> => {
+    const { id } = req.params;
+    const { gender, housingPreference, status, dorm } = req.body;
+
+    try {
+      const user = await User.findById(id);
+      if (!user) {
+        return res.status(404).json({ message: "User not found" });
+      }
+
+      let preferences = await UserPreferences.findOne({ userId: user._id });
+
+      if (preferences) {
+        // Preferences exist, update them with new fields
+        preferences.gender = gender || preferences.gender;
+        preferences.housingPreference =
+          housingPreference || preferences.housingPreference;
+        preferences.status = status || preferences.status;
+        preferences.dorm = dorm ?? preferences.dorm; // Using ?? for boolean to differentiate false from undefined
+      } else {
+        // No preferences exist, create a new one with all fields
+        preferences = new UserPreferences({
+          userId: user._id,
+          gender,
+          housingPreference,
+          status,
+          dorm,
+        });
+      }
+
+      await preferences.save(); // Save changes or new preferences
+      res
+        .status(200)
+        .json({ message: "Preferences updated successfully", preferences });
+    } catch (error) {
+      res
+        .status(500)
+        .json({ message: "Error updating preferences", error: error.message });
+    }
+  }
+);
+
 const user = asyncHandler(
   async (req: Request, res: Response): Promise<void> => {
     const { id } = req.params;
@@ -274,4 +326,12 @@ const users = asyncHandler(
   }
 );
 
-export { register, login, updateOrCreateUserProfile, user, users, profile };
+export {
+  register,
+  login,
+  updateOrCreateUserProfile,
+  updateOrCreateUserPreferences,
+  user,
+  users,
+  profile,
+};

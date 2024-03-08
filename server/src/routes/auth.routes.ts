@@ -14,6 +14,7 @@ import {
   user,
   profile,
   updateOrCreateUserProfile,
+  updateOrCreateUserPreferences,
   users,
 } from "../controller/auth.controller";
 
@@ -28,6 +29,8 @@ router.post("/register", registerValidation, register);
 router.post("/login", loginValidation, login);
 // Profile update route with JWT verification
 router.post("/profile/:id", verifyToken, updateOrCreateUserProfile);
+// Preferences update route with JWT verification
+router.post("/preferences/:id", verifyToken, updateOrCreateUserPreferences);
 
 // ====================================
 
